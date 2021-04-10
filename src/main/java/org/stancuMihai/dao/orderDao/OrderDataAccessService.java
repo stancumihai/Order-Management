@@ -1,27 +1,35 @@
 package org.stancuMihai.dao.orderDao;
 
 import org.stancuMihai.dao.ApplicationDao;
-import org.stancuMihai.model.Order;
+import org.stancuMihai.model.ProductOrder;
 
-public class OrderDataAccessService implements ApplicationDao<Order> {
+import java.sql.SQLException;
+import java.util.List;
+
+public class OrderDataAccessService implements ApplicationDao<ProductOrder> {
 
     @Override
-    public Order findById(Integer id) {
+    public ProductOrder findById(Integer id) {
         return null;
     }
 
     @Override
-    public Order update(Integer id, Order model) {
+    public ProductOrder update(Integer id, ProductOrder model) {
         return null;
     }
 
     @Override
-    public Order create(Order model) {
+    public ProductOrder create(ProductOrder model) {
         return null;
     }
 
     @Override
-    public Order delete(Integer id) {
+    public ProductOrder delete(Integer id) {
+        return null;
+    }
+
+    @Override
+    public List<ProductOrder> selectAll() throws SQLException {
         return null;
     }
 }

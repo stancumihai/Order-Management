@@ -11,16 +11,20 @@ public class ConnectionFactory {
     private static final String password = "hateschool12345";
     private static final String url = "jdbc:mysql://localhost:3306/aplicatie";
 
+    private Connection connection;
+    private Statement statement;
+    private ResultSet resultSet;
 
-    public static void doSth() throws SQLException {
-        String query = "SELECT * FROM location";
-        Connection con = DriverManager.getConnection(url, userName, password);
-        Statement statement = con.createStatement();
-        ResultSet result = statement.executeQuery(query);
-        while (result.next()) {
-            Long id = result.getLong("id");
-            String name = result.getString("name");
-            System.out.println(id + "   " + name);
+    public static Connection getConnection() throws SQLException {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(url, userName, password);
+            if (connection != null) {
+                System.out.println("Connection established");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return connection;
     }
 }

@@ -1,16 +1,16 @@
 package org.stancuMihai.model;
 
-public class Order {
+public class ProductOrder {
 
     private Integer id;
     private Integer clientId;
     private Integer productId;
 
 
-    public Order() {
+    public ProductOrder() {
     }
 
-    public Order(Integer id, Integer clientId, Integer productId) {
+    public ProductOrder(Integer id, Integer clientId, Integer productId) {
         this.id = id;
         this.clientId = clientId;
         this.productId = productId;

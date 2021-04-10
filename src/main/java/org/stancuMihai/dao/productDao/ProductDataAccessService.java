@@ -3,6 +3,9 @@ package org.stancuMihai.dao.productDao;
 import org.stancuMihai.dao.ApplicationDao;
 import org.stancuMihai.model.Product;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public class ProductDataAccessService implements ApplicationDao<Product> {
     @Override
     public Product findById(Integer id) {
@@ -21,6 +24,11 @@ public class ProductDataAccessService implements ApplicationDao<Product> {
 
     @Override
     public Product delete(Integer id) {
+        return null;
+    }
+
+    @Override
+    public List<Product> selectAll() throws SQLException {
         return null;
     }
 }
