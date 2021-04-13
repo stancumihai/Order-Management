@@ -11,31 +11,19 @@ import java.io.IOException;
 
 public class App extends Application {
 
-    private static Scene scene;
-
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        Scene scene = new Scene(loadFXML(), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+    private static Parent loadFXML() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("tabPaneController" + ".fxml"));
         return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
         launch();
-
-//        ClientDataAccessService clientDataAccessService = new ClientDataAccessService();
-//        clientDataAccessService.findById(1);
-//       // clientDataAccessService.create(new Client("Adi"));
-////        clientDataAccessService.delete(1);
-//        clientDataAccessService.update(2,new Client("Andrei"));
     }
 }
