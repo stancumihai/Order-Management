@@ -17,7 +17,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="639.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.stancuMihai.controller.ClientController">
    <children>
-      <ScrollPane fx:id="scrollPane" layoutY="14.0" prefHeight="295.0" prefWidth="293.0">
+      <ScrollPane fx:id="scrollPane" hbarPolicy="ALWAYS" layoutX="25.0" layoutY="45.0" prefHeight="326.0" prefWidth="282.0" vbarPolicy="ALWAYS">
          <content>
             <GridPane fx:id="gridPane" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1000.0" vgap="5.0">
               <columnConstraints>
@@ -36,10 +36,10 @@
       </ScrollPane>
       <HBox layoutX="318.0" layoutY="28.0" prefHeight="100.0" prefWidth="293.0" spacing="10.0">
          <children>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addClient" prefHeight="25.0" prefWidth="100.0" text="Add" />
-            <Button fx:id="editButton" mnemonicParsing="false" onAction="#editClient" prefHeight="25.0" prefWidth="100.0" text="Edit" />
-            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteClient" prefHeight="25.0" prefWidth="100.0" text="Delete" />
-            <Button fx:id="viewAllButton" mnemonicParsing="false" onAction="#viewAllClients" prefHeight="25.0" prefWidth="100.0" text="View All" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addClient" prefHeight="25.0" prefWidth="100.0" stylesheets="@Style.css" text="Add" />
+            <Button fx:id="editButton" mnemonicParsing="false" onAction="#editClient" prefHeight="25.0" prefWidth="100.0" stylesheets="@Style.css" text="Edit" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteClient" prefHeight="25.0" prefWidth="100.0" stylesheets="@Style.css" text="Delete" />
+            <Button fx:id="viewAllButton" mnemonicParsing="false" onAction="#viewAllClients" prefHeight="25.0" prefWidth="100.0" stylesheets="@Style.css" text="View All" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -77,17 +77,17 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label prefHeight="17.0" prefWidth="62.0" text="Address" GridPane.rowIndex="4">
+            <Label prefHeight="17.0" prefWidth="62.0" stylesheets="@Style.css" text="Address" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label prefHeight="17.0" prefWidth="62.0" text="Age" GridPane.rowIndex="6">
+            <Label prefHeight="17.0" prefWidth="62.0" stylesheets="@Style.css" text="Age" GridPane.rowIndex="6">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label prefHeight="17.0" prefWidth="62.0" text="Id" GridPane.rowIndex="8">
+            <Label prefHeight="17.0" prefWidth="62.0" stylesheets="@Style.css" text="Id" GridPane.rowIndex="8">
                <font>
                   <Font size="14.0" />
                </font>
@@ -100,7 +100,10 @@
           </stylesheets>
 
       </GridPane>
-      <TextArea fx:id="messagesArea" layoutX="25.0" layoutY="389.0" prefHeight="67.0" prefWidth="293.0" />
-      <Label layoutX="61.0" layoutY="352.0" prefHeight="40.0" prefWidth="102.0" text="Messages" />
+      <TextArea fx:id="messagesArea" layoutX="25.0" layoutY="416.0" prefHeight="40.0" prefWidth="293.0" />
+      <Label layoutX="57.0" layoutY="390.0" prefHeight="26.0" prefWidth="102.0" stylesheets="@Style.css" text="Messages">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </children>
 </Pane>

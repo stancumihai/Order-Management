@@ -93,10 +93,12 @@ public class ClientController implements Initializable {
         List<Client> clients = clientService.selectAll();
         gridPane.getChildren().clear();
         for (int i = 0; i < clients.size(); i++) {
-            Button button = new Button();
-            button.setPrefSize(120, 30);
-            gridPane.add(new Button(clients.get(i).getId() + "|" + clients.get(i).getName() + "|" + clients.get(i).getEmail() + "|" +
-                    clients.get(i).getAddress() + "|" + clients.get(i).getAge()), 0, i);
+            for (int j = 0; j < 10; j++) {
+                Button button = new Button();
+                button.setPrefSize(120, 30);
+                gridPane.add(new Button(clients.get(i).getId() + "|" + clients.get(i).getName() + "|" + clients.get(i).getEmail() + "|" +
+                        clients.get(i).getAddress() + "|" + clients.get(i).getAge()), 0, i);
+            }
         }
     }
 
@@ -113,11 +115,5 @@ public class ClientController implements Initializable {
     void initSpinners() {
         ageSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100));
         idSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
-    }
-
-    void initGridPane() {
-        for (int i = 0; i < 100; i++) {
-
-        }
     }
 }

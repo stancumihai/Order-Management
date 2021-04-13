@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.stancuMihai.controller.TabPaneController" xmlns="http://javafx.com/javafx/11.0.1">
+<TabPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.stancuMihai.controller.TabPaneController">
   <tabs>
-    <Tab text="Clients" >
+    <Tab text="Clients">
       <content>
-        <fx:include source="clients.fxml"/>
+        <fx:include source="clients.fxml" />
       </content>
     </Tab>
     <Tab text="Orders">
       <content>
-        <fx:include source="orders.fxml"/>
+        <fx:include source="orders.fxml" />
       </content>
     </Tab>
     <Tab text="Products">
       <content>
-        <fx:include source="products.fxml"/>
+        <fx:include source="products.fxml" />
       </content>
     </Tab>
   </tabs>
