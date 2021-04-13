@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -16,9 +17,21 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="639.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.stancuMihai.controller.ClientController">
    <children>
-      <ScrollPane layoutX="21.0" layoutY="71.0" prefHeight="328.0" prefWidth="293.0">
+      <ScrollPane fx:id="scrollPane" layoutY="14.0" prefHeight="295.0" prefWidth="293.0">
          <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="326.0" prefWidth="282.0" />
+            <GridPane fx:id="gridPane" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1000.0" vgap="5.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="84.60001220703126" minHeight="10.0" prefHeight="28.4" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="164.59998168945313" minHeight="10.0" prefHeight="30.2" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="211.19998016357422" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </GridPane>
          </content>
       </ScrollPane>
       <HBox layoutX="318.0" layoutY="28.0" prefHeight="100.0" prefWidth="293.0" spacing="10.0">
@@ -51,9 +64,9 @@
         </rowConstraints>
          <children>
             <Spinner fx:id="ageSpinner" prefHeight="25.0" prefWidth="101.0" GridPane.columnSpan="2" GridPane.rowIndex="7" />
-            <TextField fx:id="addressTextField" prefHeight="25.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-            <TextField fx:id="emailTextField" prefHeight="25.0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-            <TextField fx:id="nameTextField" prefHeight="25.0" prefWidth="173.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <TextField fx:id="nameTextField" prefHeight="25.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <TextField fx:id="addressTextField" prefHeight="25.0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+            <TextField fx:id="emailTextField" prefHeight="25.0" prefWidth="173.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
             <Label text="Name">
                <font>
                   <Font size="14.0" />
@@ -79,8 +92,15 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Spinner fx:id="ageSpinner1" prefHeight="25.0" prefWidth="101.0" GridPane.rowIndex="9" />
+            <Spinner fx:id="idSpinner" prefHeight="25.0" prefWidth="101.0" GridPane.rowIndex="9" />
          </children>
+
+          <stylesheets>
+              <URL value="@Style.css" />
+          </stylesheets>
+
       </GridPane>
+      <TextArea fx:id="messagesArea" layoutX="25.0" layoutY="389.0" prefHeight="67.0" prefWidth="293.0" />
+      <Label layoutX="61.0" layoutY="352.0" prefHeight="40.0" prefWidth="102.0" text="Messages" />
    </children>
 </Pane>

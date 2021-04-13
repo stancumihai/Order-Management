@@ -10,5 +10,6 @@ module org.stancuMihai {
     exports org.stancuMihai.dao.clientDao;
     exports org.stancuMihai.dao;
     exports org.stancuMihai.model;
+    exports org.stancuMihai.validator;
     opens org.stancuMihai.controller to javafx.fxml;
 }

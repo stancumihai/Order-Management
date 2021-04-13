@@ -1,0 +1,13 @@
+#titleText {
+    -fx-font-size: 50px;
+    -fx-font-family: "Arial Black";
+    -fx-fill: coral;
+    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.7), 6, 0.0, 0, 2);
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#DF1111, #DF1111);
+}

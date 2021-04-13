@@ -17,14 +17,9 @@ public class OrderController
     public Button viewAllButton;
     @FXML
     public Button deleteButton;
-    @FXML
-    public TextField nameTextField;
-    @FXML
-    public TextField emailTextField;
-    @FXML
-    public TextField addressTextField;
-    @FXML
-    public Spinner<Integer> ageSpinner;
+    public Spinner<Integer> idSpinner;
+    public Spinner<Integer> productIdSpinner;
+
 
     public void addOrder(ActionEvent actionEvent) {
     }

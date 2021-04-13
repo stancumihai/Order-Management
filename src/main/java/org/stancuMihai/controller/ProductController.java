@@ -19,12 +19,9 @@ public class ProductController {
     public Button deleteButton;
     @FXML
     public TextField nameTextField;
-    @FXML
-    public TextField emailTextField;
-    @FXML
-    public TextField addressTextField;
-    @FXML
-    public Spinner<Integer> ageSpinner;
+    public Spinner<Integer> idSpinner;
+    public TextField priceTextField;
+
 
     public void addProduct(ActionEvent actionEvent) {
     }
