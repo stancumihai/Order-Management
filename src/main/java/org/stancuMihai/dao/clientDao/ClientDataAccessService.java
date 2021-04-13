@@ -35,10 +35,13 @@ public class ClientDataAccessService implements ApplicationDao<Client> {
     public Client update(Integer id, Client model) throws SQLException {
 
         Connection connection = ConnectionFactory.getConnection();
-        String sql = "UPDATE client set name=? where id=?";
+        String sql = "UPDATE client set name=?,email=?,address=?,age=? where id=?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, model.getName());
-        statement.setInt(2, id);
+        statement.setString(2, model.getEmail());
+        statement.setString(3, model.getAddress());
+        statement.setInt(4, model.getAge());
+        statement.setInt(5, id);
         statement.executeUpdate();
         System.out.println(model);
         return model;
@@ -48,9 +51,12 @@ public class ClientDataAccessService implements ApplicationDao<Client> {
     public Client create(Client model) {
         PreparedStatement preparedStatement = null;
         try (Connection connection = ConnectionFactory.getConnection()) {
-            String sql = "insert into client(name) values(?)";
+            String sql = "insert into client(name,email,address,age) values(?,?,?,?);";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, model.getName());
+            preparedStatement.setString(2, model.getEmail());
+            preparedStatement.setString(3, model.getAddress());
+            preparedStatement.setInt(4, model.getAge());
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (Exception e) {
@@ -88,8 +94,13 @@ public class ClientDataAccessService implements ApplicationDao<Client> {
         String sql = "Select * from client";
         ResultSet resultSet = statement.executeQuery(sql);
         while (resultSet.next()) {
-            clients.add(new Client(resultSet.getInt("id"),
-                    resultSet.getString("name")));
+            clients.add(new Client(
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("email"),
+                    resultSet.getString("address"),
+                    resultSet.getInt("age")
+            ));
             System.out.println(clients.get(clients.size() - 1));
         }
         return clients;
