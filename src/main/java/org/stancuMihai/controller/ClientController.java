@@ -62,14 +62,14 @@ public class ClientController implements Initializable {
         this.appValidation = appValidation;
     }
 
-    public void addClient() {
+    public void addClient() throws SQLException {
         Client client = new Client();
         client.setName(nameTextField.getText());
         client.setEmail(emailTextField.getText());
         client.setAddress(addressTextField.getText());
         client.setAge(ageSpinner.getValue());
         clientService.create(client);
-        TextGenerator.textGenerator(messagesArea, "Added", client);
+        TextGenerator.textClientGenerator(messagesArea, "Added", client);
     }
 
     public void editClient() throws SQLException {
@@ -78,27 +78,25 @@ public class ClientController implements Initializable {
         if (client.getId() == null) {
             messagesArea.appendText("Could not find client with id " + id);
         } else {
-            messagesArea.setText("Found client : " + " Name: " + client.getName() + ", Email: " + client.getEmail() +
-                    ", Address: " + client.getAddress() + ", Age: " + client.getAge());
+
+            TextGenerator.textClientGenerator(messagesArea, "Found", client);
             client.setName(nameTextField.getText());
             client.setEmail(emailTextField.getText());
             client.setAddress(addressTextField.getText());
             client.setAge(ageSpinner.getValue());
             clientService.update(id, client);
-            TextGenerator.textGenerator(messagesArea, "Update", client);
+            TextGenerator.textClientGenerator(messagesArea, "Update", client);
         }
     }
 
-    public void viewAllClients() throws SQLException {
+    public void selectAll() throws SQLException {
         List<Client> clients = clientService.selectAll();
         gridPane.getChildren().clear();
         for (int i = 0; i < clients.size(); i++) {
-            for (int j = 0; j < 10; j++) {
-                Button button = new Button();
-                button.setPrefSize(120, 30);
-                gridPane.add(new Button(clients.get(i).getId() + "|" + clients.get(i).getName() + "|" + clients.get(i).getEmail() + "|" +
-                        clients.get(i).getAddress() + "|" + clients.get(i).getAge()), 0, i);
-            }
+            Button button = new Button();
+            button.setPrefSize(120, 30);
+            gridPane.add(new Button(clients.get(i).getId() + "|" + clients.get(i).getName() + "|" + clients.get(i).getEmail() + "|" +
+                    clients.get(i).getAddress() + "|" + clients.get(i).getAge()), 0, i);
         }
     }
 
@@ -108,7 +106,7 @@ public class ClientController implements Initializable {
         if (client.getId() == null) {
             messagesArea.appendText("Could not find client with id " + id);
         } else {
-            TextGenerator.textGenerator(messagesArea, "Deleted", client);
+            TextGenerator.textClientGenerator(messagesArea, "Deleted", client);
         }
     }
 

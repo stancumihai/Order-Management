@@ -15,9 +15,9 @@
     -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.7), 6, 0.0, 0, 2);
 }
 
-.button {
+#addButton,#editButton,#viewAllButton,#deleteButton {
     -fx-text-fill: white;
     -fx-font-family: "Arial Narrow";
     -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#DF1111, #DF1111);
+    -fx-background-color: linear-gradient(#00ccff, #DF1111);
 }

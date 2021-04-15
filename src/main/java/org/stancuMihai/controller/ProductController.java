@@ -1,14 +1,19 @@
 package org.stancuMihai.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import org.stancuMihai.model.Product;
+import org.stancuMihai.service.ProductService;
+import org.stancuMihai.util.TextGenerator;
 
-public class ProductController {
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ResourceBundle;
 
+public class ProductController implements Initializable {
 
     @FXML
     public Button addButton;
@@ -26,17 +31,66 @@ public class ProductController {
     public TextField priceTextField;
     @FXML
     public TextArea messagesArea;
+    @FXML
+    public ScrollPane scrollPane;
+    @FXML
+    public GridPane gridPane;
 
+    public ProductService productService;
 
-    public void addProduct(ActionEvent actionEvent) {
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
     }
 
-    public void editProduct(ActionEvent actionEvent) {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        idSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
+        setProductService(ProductService.getInstance());
     }
 
-    public void deleteProduct(ActionEvent actionEvent) {
+    public void addProduct() {
+        Product product = new Product();
+        product.setName(nameTextField.getText());
+        product.setPrice(Double.parseDouble(priceTextField.getText()));
+        TextGenerator.textProductGenerator(messagesArea, "Added", product);
     }
 
-    public void viewAllProducts(ActionEvent actionEvent) {
+    public void editProduct() throws SQLException {
+        Integer id = idSpinner.getValue();
+        Product product = productService.findById(id);
+        if (product.getId() == null) {
+            messagesArea.appendText("Could not find product with id " + id);
+        } else {
+            TextGenerator.textProductGenerator(messagesArea, "Found", product);
+            product.setPrice(Double.parseDouble(priceTextField.getText()));
+            product.setName(nameTextField.getText());
+            productService.update(id, product);
+            TextGenerator.textProductGenerator(messagesArea, "Update", product);
+        }
+    }
+
+    public void deleteProduct() throws SQLException {
+        Integer id = idSpinner.getValue();
+        Product product = productService.findById(id);
+        if (product.getId() == null) {
+            messagesArea.appendText("Could not find product with id " + id);
+        } else {
+            TextGenerator.textProductGenerator(messagesArea, "Found", product);
+            product.setPrice(Double.parseDouble(priceTextField.getText()));
+            product.setName(nameTextField.getText());
+            productService.delete(id);
+            TextGenerator.textProductGenerator(messagesArea, "Update", product);
+        }
+    }
+
+    public void selectAll() throws SQLException {
+        List<Product> productList = productService.selectAll();
+        gridPane.getChildren().clear();
+        for (int i = 0; i < productList.size(); i++) {
+            Button button = new Button();
+            button.setPrefSize(120, 30);
+            gridPane.add(new Button(productList.get(i).getId() + "|" + productList.get(i).getName() + "|" +
+                    productList.get(i).getPrice()), 0, i);
+        }
     }
 }

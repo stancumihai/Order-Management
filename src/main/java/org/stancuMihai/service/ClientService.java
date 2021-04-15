@@ -1,6 +1,6 @@
 package org.stancuMihai.service;
 
-import org.stancuMihai.dao.clientDao.ClientDataAccessService;
+import org.stancuMihai.dao.AbstractDao;
 import org.stancuMihai.model.Client;
 
 import java.sql.SQLException;
@@ -8,11 +8,11 @@ import java.util.List;
 
 public class ClientService {
 
-    public static ClientDataAccessService clientDataAccessService;
+    public static AbstractDao<Client> clientDataAccessService;
     public static ClientService clientService = null;
 
     private ClientService() {
-        ClientService.clientDataAccessService = new ClientDataAccessService();
+        ClientService.clientDataAccessService = new AbstractDao<>(Client.class);
     }
 
     public static ClientService getInstance() {
@@ -22,7 +22,7 @@ public class ClientService {
         return clientService;
     }
 
-    public Client findById(Integer id) {
+    public Client findById(Integer id) throws SQLException {
         return clientDataAccessService.findById(id);
     }
 
@@ -30,7 +30,7 @@ public class ClientService {
         return clientDataAccessService.update(id, model);
     }
 
-    public void create(Client model) {
+    public void create(Client model) throws SQLException {
         clientDataAccessService.create(model);
     }
 
