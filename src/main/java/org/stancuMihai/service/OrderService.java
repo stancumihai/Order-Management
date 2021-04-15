@@ -35,9 +35,9 @@ public class OrderService {
     public ProductOrder create(ProductOrder model) throws SQLException {
         Product product = productService.findById(model.getProductId());
         int remainder = product.getQuantity() - model.getQuantity();
-        System.out.println(remainder);
+        product.setQuantity(remainder);
         if (remainder > 0) {
-            product.setQuantity(remainder);
+            productService.update(product.getId(), product);
             return orderDataAccessService.create(model);
         } else return null;
     }

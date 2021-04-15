@@ -59,23 +59,30 @@ public class OrderController implements Initializable {
         order.setClientId(clientIdSpinner.getValue());
         order.setProductId(productIdSpinner.getValue());
         order.setQuantity(quantitySpinner.getValue());
-        orderService.create(order);
-        TextGenerator.textOrderGenerator(messagesArea, "Added", order);
+        ProductOrder productOrder = orderService.create(order);
 
+        if (productOrder == null) {
+            messagesArea.clear();
+            messagesArea.setText("Out of stock");
+        } else {
+            TextGenerator.textOrderGenerator(messagesArea, "Added", order);
+        }
     }
 
     public void editOrder() throws SQLException {
         Integer id = idSpinner.getValue();
         ProductOrder productOrder = orderService.findById(id);
         if (productOrder.getId() == null) {
-            messagesArea.appendText("Could not find order with id " + id);
+            messagesArea.setText("Could not find order with id " + id);
         } else {
             TextGenerator.textOrderGenerator(messagesArea, "Found", productOrder);
-
-
             productOrder.setClientId(clientIdSpinner.getValue());
             productOrder.setProductId(productIdSpinner.getValue());
             productOrder.setQuantity(quantitySpinner.getValue());
+            ProductOrder productOrder1 = orderService.update(id, productOrder);
+            if (productOrder1 == null) {
+                messagesArea.setText("Could not update order with id " + id);
+            }
             TextGenerator.textOrderGenerator(messagesArea, "Update", productOrder);
         }
     }

@@ -8,7 +8,6 @@ module org.stancuMihai {
     exports org.stancuMihai;
     exports org.stancuMihai.controller;
     exports org.stancuMihai.service;
-    exports org.stancuMihai.dao.clientDao;
     exports org.stancuMihai.dao;
     exports org.stancuMihai.model;
     exports org.stancuMihai.validator;

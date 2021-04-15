@@ -41,7 +41,6 @@ public class AbstractDao<T> {
     private List<T> createObjects(ResultSet resultSet) {
         List<T> list = new ArrayList<>();
         List<String> types = constructor.constructTypes(type);
-        types.forEach(System.out::println);
         try {
             while (resultSet.next()) {
                 int index = 0;
@@ -174,6 +173,8 @@ public class AbstractDao<T> {
             for (int i = 1; i < types.size(); i++) {
                 if (types.get(i).startsWith("Int")) {
                     statement.setInt(i, (Integer) valuesOfClass.get(i));
+                } else if (types.get(i).equals("Float")) {
+                    statement.setDouble(i, (Double) valuesOfClass.get(i));
                 } else {
                     statement.setString(i, (String) valuesOfClass.get(i));
                 }
