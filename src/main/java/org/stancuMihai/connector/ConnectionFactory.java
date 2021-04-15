@@ -8,7 +8,6 @@ public class ConnectionFactory {
     private static final String password = "hateschool12345";
     private static final String url = "jdbc:mysql://localhost:3306/aplicatie";
 
-
     public static Connection getConnection() throws SQLException {
         Connection connection = null;
         try {

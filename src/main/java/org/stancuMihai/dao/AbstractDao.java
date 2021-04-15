@@ -38,10 +38,9 @@ public class AbstractDao<T> {
                 T instance = type.newInstance();
                 for (Field field : type.getDeclaredFields()) {
                     Object value = resultSet.getObject(field.getName());
-
                     PropertyDescriptor propertyDescriptor = new PropertyDescriptor(field.getName(), type);
                     Method method = propertyDescriptor.getWriteMethod();
-                    if (field.getName().equals("id")) {
+                    if (field.getName().contains("id") || field.getName().endsWith("Id")) {
                         Integer id = Integer.parseInt(value.toString());
                         method.invoke(instance, id);
                     } else {
@@ -122,7 +121,6 @@ public class AbstractDao<T> {
             }
             return instance;
         } else return null;
-
     }
 
 
@@ -147,9 +145,9 @@ public class AbstractDao<T> {
 
     public T create(T model) throws SQLException {
 
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+        Connection connection;
+        PreparedStatement statement;
+        ResultSet resultSet;
         List<String> attributes = constructor.constructFields(type);
         String query = insertQuery(attributes);
         try {

@@ -46,7 +46,6 @@ public class ClientController implements Initializable {
     @FXML
     public TextArea messagesArea;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setClientService(ClientService.getInstance());

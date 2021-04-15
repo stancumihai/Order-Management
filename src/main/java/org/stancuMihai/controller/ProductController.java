@@ -28,6 +28,8 @@ public class ProductController implements Initializable {
     @FXML
     public Spinner<Integer> idSpinner;
     @FXML
+    public Spinner<Integer> quantitySpinner;
+    @FXML
     public TextField priceTextField;
     @FXML
     public TextArea messagesArea;
@@ -37,6 +39,7 @@ public class ProductController implements Initializable {
     public GridPane gridPane;
 
     public ProductService productService;
+
 
     public void setProductService(ProductService productService) {
         this.productService = productService;

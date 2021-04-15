@@ -13,8 +13,8 @@ public class TextGenerator {
     }
 
     public static void textOrderGenerator(TextArea messagesArea, String method, ProductOrder product) {
-        messagesArea.appendText(method + " Order : " + "Id" + product.getId() + "ClientId: " + product.getClientId()
-                + "  ProductId: " + product.getProductId());
+        messagesArea.appendText(method + " Order : " + " Id: " + product.getId() + "ClientId: " + product.getClientId()
+                + "  ProductId: " + product.getProductId() + " Quantity: " + product.getQuantity());
     }
 
     public static void textProductGenerator(TextArea messagesArea, String method, Product product) {
