@@ -47,15 +47,22 @@ public class ProductController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        idSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
+
         setProductService(ProductService.getInstance());
+        initSpinners();
     }
 
     public void addProduct() throws SQLException {
         Product product = new Product();
         product.setName(nameTextField.getText());
         product.setPrice(Double.parseDouble(priceTextField.getText()));
-        productService.create(product);
+        product.setQuantity(quantitySpinner.getValue());
+        if (productService.create(product) == null) {
+            messagesArea.setText("No stock");
+        } else {
+            productService.create(product);
+        }
+
         TextGenerator.textProductGenerator(messagesArea, "Added", product);
     }
 
@@ -68,6 +75,7 @@ public class ProductController implements Initializable {
             TextGenerator.textProductGenerator(messagesArea, "Found", product);
             product.setPrice(Double.parseDouble(priceTextField.getText()));
             product.setName(nameTextField.getText());
+            product.setQuantity(quantitySpinner.getValue());
             productService.update(id, product);
             TextGenerator.textProductGenerator(messagesArea, "Update", product);
         }
@@ -79,11 +87,8 @@ public class ProductController implements Initializable {
         if (product.getId() == null) {
             messagesArea.appendText("Could not find product with id " + id);
         } else {
-            TextGenerator.textProductGenerator(messagesArea, "Found", product);
-            product.setPrice(Double.parseDouble(priceTextField.getText()));
-            product.setName(nameTextField.getText());
             productService.delete(id);
-            TextGenerator.textProductGenerator(messagesArea, "Update", product);
+            TextGenerator.textProductGenerator(messagesArea, "Delete", product);
         }
     }
 
@@ -93,8 +98,13 @@ public class ProductController implements Initializable {
         for (int i = 0; i < productList.size(); i++) {
             Button button = new Button();
             button.setPrefSize(120, 30);
-            gridPane.add(new Button(productList.get(i).getId() + "|" + productList.get(i).getName() + "|" +
-                    productList.get(i).getPrice()), 0, i);
+            gridPane.add(new Button(productList.get(i).getId() + " | " + productList.get(i).getName() + " | " +
+                    productList.get(i).getPrice() + " | " + productList.get(i).getQuantity()), 0, i);
         }
+    }
+
+    void initSpinners() {
+        idSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
+        quantitySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
     }
 }

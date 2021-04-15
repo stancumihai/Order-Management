@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="639.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.stancuMihai.controller.OrderController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="639.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.stancuMihai.controller.OrderController">
     <children>
         <ScrollPane fx:id="scrollPane" hbarPolicy="ALWAYS" layoutX="25.0" layoutY="45.0" prefHeight="326.0" prefWidth="282.0" vbarPolicy="ALWAYS">
             <content>
@@ -78,6 +78,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Button fx:id="purchaseButton" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" stylesheets="@Style.css" text="Finish Purchase" GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
             </children>
 
@@ -90,6 +91,9 @@
         <Label layoutX="57.0" layoutY="390.0" prefHeight="26.0" prefWidth="102.0" stylesheets="@Style.css" text="Messages">
             <font>
                 <Font size="14.0" />
-            </font></Label>
+            </font>
+        </Label>
+        <Label layoutX="18.0" layoutY="20.0" prefHeight="17.0" prefWidth="163.0" text=" ID|ClientId|ProductId|Quantity" />
+
     </children>
 </Pane>

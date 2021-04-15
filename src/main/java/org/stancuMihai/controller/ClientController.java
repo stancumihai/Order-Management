@@ -94,17 +94,19 @@ public class ClientController implements Initializable {
         for (int i = 0; i < clients.size(); i++) {
             Button button = new Button();
             button.setPrefSize(120, 30);
-            gridPane.add(new Button(clients.get(i).getId() + "|" + clients.get(i).getName() + "|" + clients.get(i).getEmail() + "|" +
-                    clients.get(i).getAddress() + "|" + clients.get(i).getAge()), 0, i);
+            gridPane.add(new Button(clients.get(i).getId() + " | " + clients.get(i).getName() + " | " + clients.get(i).getEmail() + " | " +
+                    clients.get(i).getAddress() + " | " + clients.get(i).getAge()), 0, i);
         }
     }
 
     public void deleteClient() throws SQLException {
         Integer id = idSpinner.getValue();
-        Client client = clientService.delete(id);
+        Client client = clientService.findById(id);
+
         if (client.getId() == null) {
             messagesArea.appendText("Could not find client with id " + id);
         } else {
+            clientService.delete(id);
             TextGenerator.textClientGenerator(messagesArea, "Deleted", client);
         }
     }

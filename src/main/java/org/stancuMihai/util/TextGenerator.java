@@ -18,6 +18,7 @@ public class TextGenerator {
     }
 
     public static void textProductGenerator(TextArea messagesArea, String method, Product product) {
-        messagesArea.appendText(method + " Product : " + "Name" + product.getName() + "price: " + product.getPrice());
+        messagesArea.appendText(method + " Product : " + "Name" + product.getName() + "price: " + product.getPrice() + "quantity: "
+                + product.getQuantity());
     }
 }

@@ -1,6 +1,7 @@
 package org.stancuMihai.service;
 
 import org.stancuMihai.dao.AbstractDao;
+import org.stancuMihai.model.Product;
 import org.stancuMihai.model.ProductOrder;
 
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ public class OrderService {
 
     public static AbstractDao<ProductOrder> orderDataAccessService;
     public static OrderService orderService = null;
+    public static ProductService productService = ProductService.getInstance();
 
     private OrderService() {
         OrderService.orderDataAccessService = new AbstractDao<>(ProductOrder.class);
@@ -31,7 +33,13 @@ public class OrderService {
     }
 
     public ProductOrder create(ProductOrder model) throws SQLException {
-        return orderDataAccessService.create(model);
+        Product product = productService.findById(model.getProductId());
+        int remainder = product.getQuantity() - model.getQuantity();
+        System.out.println(remainder);
+        if (remainder > 0) {
+            product.setQuantity(remainder);
+            return orderDataAccessService.create(model);
+        } else return null;
     }
 
     public ProductOrder delete(Integer id) throws SQLException {

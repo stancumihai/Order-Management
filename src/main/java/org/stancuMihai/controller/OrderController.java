@@ -38,6 +38,8 @@ public class OrderController implements Initializable {
     public Spinner<Integer> quantitySpinner;
     @FXML
     public TextArea messagesArea;
+    @FXML
+    public Button purchaseButton;
 
     private OrderService orderService;
 
@@ -73,18 +75,20 @@ public class OrderController implements Initializable {
 
             productOrder.setClientId(clientIdSpinner.getValue());
             productOrder.setProductId(productIdSpinner.getValue());
+            productOrder.setQuantity(quantitySpinner.getValue());
             TextGenerator.textOrderGenerator(messagesArea, "Update", productOrder);
         }
     }
 
     public void deleteOrder() throws SQLException {
         Integer id = idSpinner.getValue();
-        ProductOrder productOrder = orderService.findById(id);
-        ProductOrder order = orderService.delete(id);
+        ProductOrder order = orderService.findById(id);
+
         if (order.getId() == null) {
             messagesArea.appendText("Could not find order with id " + id);
         } else {
-            TextGenerator.textOrderGenerator(messagesArea, "Deleted", productOrder);
+            orderService.delete(id);
+            TextGenerator.textOrderGenerator(messagesArea, "Deleted", order);
         }
     }
 
@@ -94,8 +98,8 @@ public class OrderController implements Initializable {
         for (int i = 0; i < orders.size(); i++) {
             Button button = new Button();
             button.setPrefSize(120, 30);
-            gridPane.add(new Button(orders.get(i).getId() + "|" + orders.get(i).getClientId() + "|" +
-                    orders.get(i).getProductId()), 0, i);
+            gridPane.add(new Button(orders.get(i).getId() + " | " + orders.get(i).getClientId() + " | " +
+                    orders.get(i).getProductId() + " | " + orders.get(i).getQuantity()), 0, i);
         }
     }
 
