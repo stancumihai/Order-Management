@@ -87,6 +87,13 @@ public class OrderController implements Initializable {
         }
     }
 
+    public void getTotalSumId() throws SQLException {
+        Integer id = idSpinner.getValue();
+        Double sum = orderService.getTotalSumId(id);
+        messagesArea.clear();
+        messagesArea.setText("For client " + id + " total sum is: " + sum);
+    }
+
     public void deleteOrder() throws SQLException {
         Integer id = idSpinner.getValue();
         ProductOrder order = orderService.findById(id);

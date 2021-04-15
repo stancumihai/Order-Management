@@ -6,6 +6,7 @@ import org.stancuMihai.model.ProductOrder;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrderService {
 
@@ -30,6 +31,18 @@ public class OrderService {
 
     public ProductOrder update(Integer id, ProductOrder model) throws SQLException {
         return orderDataAccessService.update(id, model);
+    }
+
+    public Double getTotalSumId(Integer id) throws SQLException {
+        List<ProductOrder> orders = selectAll();
+        List<ProductOrder> clientRelated = orders.stream().filter(s -> s.getClientId().equals(id)).collect(Collectors.toList());
+        double orderPrice = 0;
+        int i = 0;
+        for (ProductOrder productOrder : clientRelated) {
+            orderPrice = orderPrice + productService.findById(productOrder.getProductId()).getPrice() * clientRelated.get(i).getQuantity();
+            i++;
+        }
+        return orderPrice;
     }
 
     public ProductOrder create(ProductOrder model) throws SQLException {
