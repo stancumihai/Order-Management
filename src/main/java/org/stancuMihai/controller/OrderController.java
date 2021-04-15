@@ -50,10 +50,13 @@ public class OrderController implements Initializable {
         this.orderService = orderService;
     }
 
-    public void addOrder() {
+    public void addOrder() throws SQLException {
         ProductOrder order = new ProductOrder();
         order.setClientId(clientIdSpinner.getValue());
         order.setProductId(productIdSpinner.getValue());
+        orderService.create(order);
+        TextGenerator.textOrderGenerator(messagesArea, "Added", order);
+
     }
 
     public void editOrder() throws SQLException {

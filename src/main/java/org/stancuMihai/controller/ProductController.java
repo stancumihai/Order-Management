@@ -48,10 +48,11 @@ public class ProductController implements Initializable {
         setProductService(ProductService.getInstance());
     }
 
-    public void addProduct() {
+    public void addProduct() throws SQLException {
         Product product = new Product();
         product.setName(nameTextField.getText());
         product.setPrice(Double.parseDouble(priceTextField.getText()));
+        productService.create(product);
         TextGenerator.textProductGenerator(messagesArea, "Added", product);
     }
 

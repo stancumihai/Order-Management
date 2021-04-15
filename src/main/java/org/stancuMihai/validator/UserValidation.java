@@ -14,7 +14,6 @@ public class UserValidation implements AppValidation {
         }
     }
 
-
     public boolean checkIfEmailIsCorrect(String email) {
         return email.matches("[a-zA-Z0-9]+@[a-zA-Z]+.[a-z]+");
     }
