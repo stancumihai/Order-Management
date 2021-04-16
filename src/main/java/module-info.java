@@ -5,6 +5,7 @@ module org.stancuMihai {
     requires java.desktop;
     requires org.jetbrains.annotations;
     requires itextpdf;
+    requires org.junit.jupiter.api;
 
     opens org.stancuMihai to javafx.fxml;
     exports org.stancuMihai;
