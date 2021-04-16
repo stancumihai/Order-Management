@@ -1,8 +1,11 @@
-package org.stancuMihai.validator;
+package org.stancuMihai.businessLayer.validator;
 
-import org.stancuMihai.exception.NotValidDataEntered;
+import org.stancuMihai.businessLayer.exception.NotValidDataEntered;
 import org.stancuMihai.model.Client;
 
+/***
+ * validates user attributes
+ */
 public class UserValidation implements AppValidation {
     @Override
     public void validate(Client client) {

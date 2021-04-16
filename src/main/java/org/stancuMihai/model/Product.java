@@ -1,5 +1,8 @@
 package org.stancuMihai.model;
 
+/***
+ * Product pojo database class
+ */
 public class Product {
 
     private Integer id;
@@ -7,10 +10,16 @@ public class Product {
     private Double price;
     private Integer quantity;
 
-    public Product(){
+    public Product() {
 
     }
 
+    /***
+     * Construct for Product object
+     * @param name name of the product
+     * @param price price of the product
+     * @param quantity quantity of the product
+     */
     public Product(String name, Double price, Integer quantity) {
         this.name = name;
         this.price = price;
@@ -58,11 +67,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return name + '\'' +
                 ", price=" + price +
-                ", quantity=" + quantity +
-                '}';
+                ", quantity" + quantity + "\n";
     }
 }

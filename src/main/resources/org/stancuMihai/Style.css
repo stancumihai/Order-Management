@@ -1,18 +1,5 @@
-#titleText {
-    -fx-font-size: 50px;
-    -fx-font-family: "Arial Black";
-    -fx-fill: coral;
-    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.7), 6, 0.0, 0, 2);
-}
 #mainPane{
     -fx-background-image: url("background.jpeg");
-}
-
-.label {
-
-    -fx-font-family: cursive;
-    -fx-fill: #50ffad;
-    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.7), 6, 0.0, 0, 2);
 }
 
 #addButton,#editButton,#viewAllButton,#deleteButton,#purchaseButton {

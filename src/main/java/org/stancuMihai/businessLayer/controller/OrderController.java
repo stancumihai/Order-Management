@@ -1,18 +1,23 @@
-package org.stancuMihai.controller;
+package org.stancuMihai.businessLayer.controller;
 
+import com.itextpdf.text.DocumentException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import org.stancuMihai.model.ProductOrder;
-import org.stancuMihai.service.OrderService;
-import org.stancuMihai.util.TextGenerator;
+import org.stancuMihai.businessLayer.service.OrderService;
+import org.stancuMihai.businessLayer.util.TextGenerator;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/***
+ * It makes the chain between GUI and logic for the order window
+ */
 public class OrderController implements Initializable {
 
 
@@ -87,11 +92,12 @@ public class OrderController implements Initializable {
         }
     }
 
-    public void getTotalSumId() throws SQLException {
+    public void getTotalSumId() throws SQLException, DocumentException, FileNotFoundException {
         Integer id = idSpinner.getValue();
         Double sum = orderService.getTotalSumId(id);
         messagesArea.clear();
         messagesArea.setText("For client " + id + " total sum is: " + sum);
+        orderService.createReceipt(id);
     }
 
     public void deleteOrder() throws SQLException {

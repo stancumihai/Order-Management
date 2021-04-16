@@ -1,18 +1,21 @@
-package org.stancuMihai.controller;
+package org.stancuMihai.businessLayer.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import org.stancuMihai.model.Product;
-import org.stancuMihai.service.ProductService;
-import org.stancuMihai.util.TextGenerator;
+import org.stancuMihai.businessLayer.service.ProductService;
+import org.stancuMihai.businessLayer.util.TextGenerator;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/***
+ * It makes the chain between GUI and logic for the product window
+ */
 public class ProductController implements Initializable {
 
     @FXML

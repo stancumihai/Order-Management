@@ -1,23 +1,42 @@
-package org.stancuMihai.service;
+package org.stancuMihai.businessLayer.service;
 
-import org.stancuMihai.dao.AbstractDao;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import org.stancuMihai.dataAccessLayer.AbstractDao;
+import org.stancuMihai.model.Client;
 import org.stancuMihai.model.Product;
 import org.stancuMihai.model.ProductOrder;
+import org.stancuMihai.businessLayer.util.PdfInitializer;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/***
+ *
+ * * The business logic for the Order Class
+ */
 public class OrderService {
 
     public static AbstractDao<ProductOrder> orderDataAccessService;
     public static OrderService orderService = null;
     public static ProductService productService = ProductService.getInstance();
+    public static ClientService clientService = ClientService.getInstance();
+    private static int receiptCount = 0;
 
     private OrderService() {
         OrderService.orderDataAccessService = new AbstractDao<>(ProductOrder.class);
     }
 
+    /***
+     *
+     * @return it returns singleton instance of OrderService
+     */
     public static OrderService getInstance() {
         if (orderService == null) {
             orderService = new OrderService();
@@ -33,6 +52,39 @@ public class OrderService {
         return orderDataAccessService.update(id, model);
     }
 
+    /***
+     * Method which creates PDF receipt
+     * @param id client id
+     */
+    public void createReceipt(int id) throws SQLException, DocumentException, FileNotFoundException {
+        List<ProductOrder> clientProductOrder = selectAll().stream().filter(s -> s.getClientId().equals(id)).collect(Collectors.toList());
+        List<Product> products = new ArrayList<>();
+        for (ProductOrder productOrder : clientProductOrder) {
+            products.add(productService.findById(productOrder.getProductId()));
+        }
+        Client client = clientService.findById(id);
+        Document document = new Document();
+        receiptCount++;
+        PdfWriter.getInstance(document, new FileOutputStream("Receipt" + receiptCount));
+        document.open();
+        PdfPTable table = new PdfPTable(3);
+        PdfInitializer.addTableHeader(table);
+        PdfInitializer.addRows(table, client.getId() + " " + client.getName());
+        StringBuilder orderString = new StringBuilder();
+        for (Product product : products) {
+            orderString.append(product.getName()).append(" ").append(product.getPrice()).append("\n");
+        }
+        PdfInitializer.addRows(table, orderString.toString());
+        PdfInitializer.addRows(table, String.valueOf(getTotalSumId(id)));
+        document.add(table);
+        document.close();
+    }
+
+    /***
+     *
+     * @param id client id to be processed
+     * @return returns the total of of the client
+     */
     public Double getTotalSumId(Integer id) throws SQLException {
         List<ProductOrder> orders = selectAll();
         List<ProductOrder> clientRelated = orders.stream().filter(s -> s.getClientId().equals(id)).collect(Collectors.toList());
@@ -62,6 +114,7 @@ public class OrderService {
     public List<ProductOrder> selectAll() throws SQLException {
         return orderDataAccessService.selectAll();
     }
+
 }
 
 

@@ -1,5 +1,8 @@
 package org.stancuMihai.model;
 
+/***
+ * Client pojo database class
+ */
 public class Client {
 
     private Integer id;
@@ -15,6 +18,13 @@ public class Client {
         this.name = name;
     }
 
+    /***
+     * It constructs the client object
+     * @param name name of the client
+     * @param email email of the client
+     * @param address address of the client
+     * @param age age of the client
+     */
     public Client(String name, String email, String address, Integer age) {
         this.name = name;
         this.email = email;

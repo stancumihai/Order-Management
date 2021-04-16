@@ -1,11 +1,14 @@
-package org.stancuMihai.service;
+package org.stancuMihai.businessLayer.service;
 
-import org.stancuMihai.dao.AbstractDao;
+import org.stancuMihai.dataAccessLayer.AbstractDao;
 import org.stancuMihai.model.Product;
 
 import java.sql.SQLException;
 import java.util.List;
 
+/***
+ * The business logic for the Product Class
+ */
 public class ProductService {
 
 
@@ -16,6 +19,10 @@ public class ProductService {
         productDataAccessService = new AbstractDao<>(Product.class);
     }
 
+    /***
+     *
+     * @return it returns singleton instance of ProductService
+     */
     public static ProductService getInstance() {
         if (productService == null) {
             productService = new ProductService();
@@ -27,8 +34,8 @@ public class ProductService {
         return productDataAccessService.findById(id);
     }
 
-    public Product update(Integer id, Product model) throws SQLException {
-        return productDataAccessService.update(id, model);
+    public void update(Integer id, Product model) throws SQLException {
+        productDataAccessService.update(id, model);
     }
 
     public Product create(Product model) throws SQLException {

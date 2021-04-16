@@ -1,36 +1,33 @@
-package org.stancuMihai.util;
+package org.stancuMihai.businessLayer.util;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/***
+ * Util class that eases some business logic
+ * @param <T>
+ */
 public class Constructor<T> {
 
-    public List<String> constructTypes(Class<T> type) {
+    /***
+     *
+     * @param type type of the class
+     * @return it returns the types of all the fields in the class
+     */
+    public List<String> constructTypes(@org.jetbrains.annotations.NotNull Class<T> type) {
         ArrayList<String> types = new ArrayList<>();
         for (Field field : type.getDeclaredFields()) {
             types.add(TypeMapper.map(field.getAnnotatedType().toString()));
         }
         return types;
     }
-
-    public List<Method> constructMethods(List<String> types) throws NoSuchMethodException {
-        List<Method> methods = new ArrayList<>();
-        for (String s : types) {
-            if (s.equals("Int")) {
-                methods.add(ResultSet.class.getMethod("get" + s, int.class));
-            } else if (s.equals("String")) {
-                methods.add(ResultSet.class.getMethod("get" + s, String.class));
-            } else {
-                methods.add(ResultSet.class.getMethod("get" + s, float.class));
-            }
-        }
-        return methods;
-    }
-
+    /***
+     *
+     * @param type type of the class
+     * @return it returns the fields in the class
+     */
     public List<String> constructFields(Class<T> type) {
         List<String> attributes = new ArrayList<>();
         for (Field field : type.getDeclaredFields()) {
@@ -39,6 +36,12 @@ public class Constructor<T> {
         return attributes;
     }
 
+    /***
+     *
+     * @param attributes the attributes of the class
+     * @param type the T generic type of the class
+     * @return it returns the update query constructed in SQL manner
+     */
     public String updateQuery(List<String> attributes, Class<T> type) {
         StringBuilder toBeFormed = new StringBuilder();
         for (int i = 1; i < attributes.size(); i++) {
@@ -51,6 +54,12 @@ public class Constructor<T> {
         return "update " + type.getSimpleName().toLowerCase(Locale.ROOT) + " set " + toBeFormed + " where id = ?";
     }
 
+    /***
+     *
+     * @param attributes the attributes of the class
+     * @param type the T generic type of the class
+     * @return it returns the insert query constructed in SQL manner
+     */
     public String insertQuery(List<String> attributes, Class<T> type) {
         StringBuilder attributesQueryPart = new StringBuilder();
         StringBuilder signQueryPart = new StringBuilder();
@@ -67,6 +76,5 @@ public class Constructor<T> {
         return "insert into " + type.getSimpleName().toLowerCase(Locale.ROOT) +
                 "(" + attributesQueryPart + ")" + " values " +
                 "(" + signQueryPart + ")";
-
     }
 }

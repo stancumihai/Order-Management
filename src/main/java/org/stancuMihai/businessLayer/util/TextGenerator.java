@@ -1,10 +1,13 @@
-package org.stancuMihai.util;
+package org.stancuMihai.businessLayer.util;
 
 import javafx.scene.control.TextArea;
 import org.stancuMihai.model.Client;
 import org.stancuMihai.model.Product;
 import org.stancuMihai.model.ProductOrder;
 
+/***
+ *Generates text for the message are of the GUI
+ */
 public class TextGenerator {
 
     public static void textClientGenerator(TextArea messagesArea, String method, Client client) {

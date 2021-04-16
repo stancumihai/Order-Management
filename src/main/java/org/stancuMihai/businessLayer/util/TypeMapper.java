@@ -1,5 +1,8 @@
-package org.stancuMihai.util;
+package org.stancuMihai.businessLayer.util;
 
+/***
+ * auxiliary for mapping types
+ */
 public class TypeMapper {
 
     public static String map(String type) {

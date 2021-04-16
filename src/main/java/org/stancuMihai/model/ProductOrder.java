@@ -1,5 +1,8 @@
 package org.stancuMihai.model;
 
+/***
+ * Order pojo database class
+ */
 public class ProductOrder {
 
     private Integer id;
@@ -10,6 +13,12 @@ public class ProductOrder {
     public ProductOrder() {
     }
 
+    /***
+     * It constructs ProductOrder object
+     * @param clientId client foreign key
+     * @param productId product foreign key
+     * @param quantity quantity of the order
+     */
     public ProductOrder(Integer clientId, Integer productId, Integer quantity) {
         this.clientId = clientId;
         this.productId = productId;

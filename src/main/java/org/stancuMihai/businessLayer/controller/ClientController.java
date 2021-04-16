@@ -1,20 +1,24 @@
-package org.stancuMihai.controller;
+package org.stancuMihai.businessLayer.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import org.stancuMihai.businessLayer.exception.NotValidDataEntered;
+import org.stancuMihai.businessLayer.service.ClientService;
+import org.stancuMihai.businessLayer.util.TextGenerator;
+import org.stancuMihai.businessLayer.validator.AppValidation;
+import org.stancuMihai.businessLayer.validator.UserValidation;
 import org.stancuMihai.model.Client;
-import org.stancuMihai.service.ClientService;
-import org.stancuMihai.util.TextGenerator;
-import org.stancuMihai.validator.AppValidation;
-import org.stancuMihai.validator.UserValidation;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/***
+ * It makes the chain between GUI and logic for the client window
+ */
 public class ClientController implements Initializable {
 
 
@@ -67,8 +71,15 @@ public class ClientController implements Initializable {
         client.setEmail(emailTextField.getText());
         client.setAddress(addressTextField.getText());
         client.setAge(ageSpinner.getValue());
-        clientService.create(client);
-        TextGenerator.textClientGenerator(messagesArea, "Added", client);
+        try {
+            appValidation.validate(client);
+            clientService.create(client);
+            TextGenerator.textClientGenerator(messagesArea, "Added", client);
+        } catch (NotValidDataEntered ne) {
+            ne.fillInStackTrace();
+            messagesArea.setText("Bad input");
+        }
+
     }
 
     public void editClient() throws SQLException {
@@ -83,8 +94,14 @@ public class ClientController implements Initializable {
             client.setEmail(emailTextField.getText());
             client.setAddress(addressTextField.getText());
             client.setAge(ageSpinner.getValue());
-            clientService.update(id, client);
-            TextGenerator.textClientGenerator(messagesArea, "Update", client);
+            try {
+                appValidation.validate(client);
+                clientService.update(id, client);
+                TextGenerator.textClientGenerator(messagesArea, "Update", client);
+            } catch (NotValidDataEntered ne) {
+                ne.fillInStackTrace();
+                messagesArea.setText("Bad input");
+            }
         }
     }
 
@@ -106,8 +123,12 @@ public class ClientController implements Initializable {
         if (client.getId() == null) {
             messagesArea.appendText("Could not find client with id " + id);
         } else {
-            clientService.delete(id);
-            TextGenerator.textClientGenerator(messagesArea, "Deleted", client);
+            try {
+                clientService.delete(id);
+                TextGenerator.textClientGenerator(messagesArea, "Deleted", client);
+            } catch (Exception ne) {
+                ne.fillInStackTrace();
+            }
         }
     }
 

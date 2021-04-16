@@ -1,11 +1,14 @@
-package org.stancuMihai.service;
+package org.stancuMihai.businessLayer.service;
 
-import org.stancuMihai.dao.AbstractDao;
+import org.stancuMihai.dataAccessLayer.AbstractDao;
 import org.stancuMihai.model.Client;
 
 import java.sql.SQLException;
 import java.util.List;
 
+/***
+ * The business logic for the Client Class
+ */
 public class ClientService {
 
     public static AbstractDao<Client> clientDataAccessService;
@@ -15,6 +18,10 @@ public class ClientService {
         ClientService.clientDataAccessService = new AbstractDao<>(Client.class);
     }
 
+    /***
+     *
+     * @return it returns singleton instance of ClientService
+     */
     public static ClientService getInstance() {
         if (clientService == null) {
             clientService = new ClientService();
