@@ -1,4 +1,4 @@
-package org.stancuMihai.businessLayer.controller;
+package org.stancuMihai.presentation.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -61,7 +61,7 @@ public class ClientController implements Initializable {
         this.clientService = clientService;
     }
 
-    public void setAppValidation(AppValidation appValidation) {
+    public void setAppValidation(AppValidation appValidation)    {
         this.appValidation = appValidation;
     }
 

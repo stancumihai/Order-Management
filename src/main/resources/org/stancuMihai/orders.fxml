@@ -8,7 +8,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0"
       prefWidth="639.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/11.0.1"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.stancuMihai.businessLayer.controller.OrderController">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.stancuMihai.presentation.controller.OrderController">
     <ScrollPane fx:id="scrollPane" hbarPolicy="ALWAYS" layoutX="25.0" layoutY="45.0" prefHeight="326.0"
                 prefWidth="282.0" vbarPolicy="ALWAYS">
         <GridPane fx:id="gridPane" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"

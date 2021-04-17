@@ -1,4 +1,4 @@
-package org.stancuMihai.businessLayer.controller;
+package org.stancuMihai.presentation.controller;
 
 import com.itextpdf.text.DocumentException;
 import javafx.fxml.FXML;

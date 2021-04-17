@@ -1,4 +1,4 @@
-package org.stancuMihai.businessLayer.controller;
+package org.stancuMihai.presentation.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
