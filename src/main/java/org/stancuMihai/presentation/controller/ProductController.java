@@ -1,5 +1,6 @@
 package org.stancuMihai.presentation.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -42,6 +43,7 @@ public class ProductController implements Initializable {
     public GridPane gridPane;
 
     public ProductService productService;
+    public Button resetButton;
 
 
     public void setProductService(ProductService productService) {
@@ -109,5 +111,11 @@ public class ProductController implements Initializable {
     void initSpinners() {
         idSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
         quantitySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
+    }
+
+    public void resetForm() {
+        gridPane.getChildren().clear();
+        messagesArea.clear();
+        initSpinners();
     }
 }

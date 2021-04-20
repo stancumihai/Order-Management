@@ -84,6 +84,11 @@
                </font>
             </Label>
             <Spinner fx:id="idSpinner" prefHeight="25.0" prefWidth="101.0" GridPane.rowIndex="9" />
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <children>
+                  <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetForm" prefHeight="30.0" prefWidth="70.0" text="Reset" />
+               </children>
+            </HBox>
          </children>
 
           <stylesheets>

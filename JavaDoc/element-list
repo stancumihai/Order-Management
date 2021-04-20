@@ -1,0 +1,10 @@
+module:org.stancuMihai
+org.stancuMihai
+org.stancuMihai.businessLayer.exception
+org.stancuMihai.businessLayer.service
+org.stancuMihai.businessLayer.util
+org.stancuMihai.businessLayer.validator
+org.stancuMihai.connector
+org.stancuMihai.dataAccessLayer
+org.stancuMihai.model
+org.stancuMihai.presentation.controller

@@ -4,11 +4,11 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.stancuMihai.businessLayer.util.PdfInitializer;
 import org.stancuMihai.dataAccessLayer.AbstractDao;
 import org.stancuMihai.model.Client;
 import org.stancuMihai.model.Product;
 import org.stancuMihai.model.ProductOrder;
-import org.stancuMihai.businessLayer.util.PdfInitializer;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -71,8 +71,11 @@ public class OrderService {
         PdfInitializer.addTableHeader(table);
         PdfInitializer.addRows(table, client.getId() + " " + client.getName());
         StringBuilder orderString = new StringBuilder();
+        int productOrderIndex = 0;
         for (Product product : products) {
-            orderString.append(product.getName()).append(" ").append(product.getPrice()).append("\n");
+            orderString.append(product.getName()).append(" ").append(product.getPrice()).append(" ")
+                    .append(clientProductOrder.get(productOrderIndex).getQuantity()).append("\n");
+            productOrderIndex++;
         }
         PdfInitializer.addRows(table, orderString.toString());
         PdfInitializer.addRows(table, String.valueOf(getTotalSumId(id)));

@@ -25,10 +25,13 @@ public class ClientController implements Initializable {
     private ClientService clientService;
     private AppValidation appValidation;
 
+
     @FXML
     public GridPane gridPane;
     @FXML
     public ScrollPane scrollPane;
+    @FXML
+    public Button resetButton;
     @FXML
     public Button addButton;
     @FXML
@@ -61,7 +64,7 @@ public class ClientController implements Initializable {
         this.clientService = clientService;
     }
 
-    public void setAppValidation(AppValidation appValidation)    {
+    public void setAppValidation(AppValidation appValidation) {
         this.appValidation = appValidation;
     }
 
@@ -135,5 +138,11 @@ public class ClientController implements Initializable {
     void initSpinners() {
         ageSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100));
         idSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
+    }
+
+    public void resetForm() {
+        gridPane.getChildren().clear();
+        messagesArea.clear();
+        initSpinners();
     }
 }

@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 public class PdfInitializer {
 
     public static void addTableHeader(PdfPTable table) {
-        Stream.of("Client", "Products", "Total Price")
+        Stream.of("Id/Client", "Products/Price/Quantity", "Total Price")
                 .forEach(columnTitle -> {
                     PdfPCell header = new PdfPCell();
                     header.setBackgroundColor(BaseColor.LIGHT_GRAY);

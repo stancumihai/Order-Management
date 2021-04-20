@@ -2,7 +2,7 @@
     -fx-background-image: url("background.jpeg");
 }
 
-#addButton,#editButton,#viewAllButton,#deleteButton,#purchaseButton {
+#addButton,#editButton,#viewAllButton,#deleteButton,#purchaseButton,#resetButton{
     -fx-text-fill: white;
     -fx-font-family: "Arial Narrow";
     -fx-font-weight: bold;

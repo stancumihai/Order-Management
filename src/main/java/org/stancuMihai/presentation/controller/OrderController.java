@@ -1,6 +1,7 @@
 package org.stancuMihai.presentation.controller;
 
 import com.itextpdf.text.DocumentException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -45,6 +46,7 @@ public class OrderController implements Initializable {
     public TextArea messagesArea;
     @FXML
     public Button purchaseButton;
+    public Button resetButton;
 
     private OrderService orderService;
 
@@ -93,7 +95,7 @@ public class OrderController implements Initializable {
     }
 
     public void getTotalSumId() throws SQLException, DocumentException, FileNotFoundException {
-        Integer id = idSpinner.getValue();
+        Integer id = clientIdSpinner.getValue();
         Double sum = orderService.getTotalSumId(id);
         messagesArea.clear();
         messagesArea.setText("For client " + id + " total sum is: " + sum);
@@ -128,5 +130,11 @@ public class OrderController implements Initializable {
         idSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
         clientIdSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
         quantitySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000));
+    }
+
+    public void resetForm() {
+        gridPane.getChildren().clear();
+        messagesArea.clear();
+        initSpinners();
     }
 }
